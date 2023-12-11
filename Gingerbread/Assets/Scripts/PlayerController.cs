@@ -4,6 +4,8 @@ using UnityEngine.InputSystem;
 // required components
 [RequireComponent(typeof(CharacterController))]
 [RequireComponent(typeof(PlayerInput))]
+[RequireComponent(typeof(Animator))]
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,13 +22,22 @@ public class PlayerController : MonoBehaviour
     private InputAction _movementAction;
     private InputAction _jumpAction;
 
+    private Animator _animator;
+    private int _movementXAnimParamId;
+    private int _movementZAnimParamId;
+
     private void Start()
     {
-        // These components are required (see top of this class) so I want to just access them directly
-        // I choose to see errors rather than adding the components because I want to have ownership on 
-        // the settings and make sure they're properly configured
         _controller = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
+        _animator = GetComponent<Animator>();
+
+        _movementAction = _playerInput.actions["Movement"];
+        _jumpAction = _playerInput.actions["Jump"];
+
+        // retrieving the correct IDs
+        _movementXAnimParamId = Animator.StringToHash("MovementX");
+        _movementZAnimParamId = Animator.StringToHash("MovementZ");
 
         _movementAction = _playerInput.actions["Movement"];
         _jumpAction = _playerInput.actions["Jump"];
@@ -34,7 +45,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-
         if (GameManager.instance.gameState == GameManager.GameState.MainMenu) return;
 
         _groundedPlayer = _controller.isGrounded;
@@ -44,6 +54,9 @@ public class PlayerController : MonoBehaviour
 
         Vector3 move = new Vector3(input.x, 0, input.y);
         _controller.Move(move * Time.deltaTime * _playerSpeed);
+
+        _animator.SetFloat(_movementXAnimParamId, input.x);
+        _animator.SetFloat(_movementZAnimParamId, input.y);
 
         if (_jumpAction.triggered && _groundedPlayer) _playerVelocity.y += Mathf.Sqrt(_jumpHeight * -3.0f * _gravityValue);
 
