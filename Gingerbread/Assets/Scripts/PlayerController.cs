@@ -34,6 +34,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+
+        if (GameManager.instance.gameState == GameManager.GameState.MainMenu) return;
+
         _groundedPlayer = _controller.isGrounded;
         if (_groundedPlayer && _playerVelocity.y < 0) _playerVelocity.y = 0f;
 
