@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using System.IO;
 using System.Collections;
+using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,17 +15,21 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _mainMenuPanel;
     [SerializeField] private GameObject _pedestalCharacter;
     [SerializeField] private GameObject _backToMenuButton;
+    [SerializeField] private float _rotationSpeed = 30.0f;
+
 
     // List my input actions
     private PlayerInput _playerInput;
     private InputAction _backToMenuAction;
     private InputAction _exitGameAction;
+    private InputAction _playGameAction;
 
     private GameObject _worldPrefab;
     private GameObject _worldInstance;
     private AssetBundle myLoadedAssetBundle;
     private Coroutine _loadAssetBundleCoroutine;
 
+    public List<GameObject> gameObjectsToRotate;
 
 
     private void Awake()
@@ -45,10 +50,12 @@ public class GameManager : MonoBehaviour
         _playerInput = GetComponent<PlayerInput>();
         _backToMenuAction = _playerInput.actions["BackToMenu"];
         _exitGameAction = _playerInput.actions["ExitGame"];
+        _playGameAction = _playerInput.actions["PlayGame"];
+
 
         //ChangeState(gameState);
-       // ChangeState(GameState.MainMenu);
-        StartGame();
+        ChangeState(GameState.MainMenu);
+        //StartGame();
     }
 
     public void Update()
@@ -63,6 +70,18 @@ public class GameManager : MonoBehaviour
         if (_exitGameAction.triggered)
         {
             ApplicationQuit();
+        }
+
+        // play game by pressing P, debug
+        if (_playGameAction.triggered)
+        {
+            StartGame();
+        }
+
+        // Rotate the objects if the game state is MainMenu
+        if (gameState == GameState.MainMenu)
+        {
+            MenuGameBackgroundAnimation();
         }
     }
 
@@ -90,6 +109,14 @@ public class GameManager : MonoBehaviour
     public void GoToMainMenu()
     {
         ChangeState(GameState.MainMenu);
+    }
+
+    private void MenuGameBackgroundAnimation()
+    {
+        foreach (GameObject gameObject in gameObjectsToRotate)
+        {
+            gameObject.transform.Rotate(0, _rotationSpeed * Time.deltaTime, 0);
+        }
     }
 
     /// <summary>
@@ -128,18 +155,14 @@ public class GameManager : MonoBehaviour
         if (state == GameState.Game)
         {
             // Currently not managing Pause/Start New Game, just switching states
- _loadAssetBundleCoroutine = StartCoroutine(LoadAssetBundleCoroutine());
+            _loadAssetBundleCoroutine = StartCoroutine(LoadAssetBundleCoroutine());
 
             _mainMenuPanel.SetActive(false);
             _pedestalCharacter.SetActive(false);
 
             _backToMenuButton.SetActive(true);
-
-           
-
         }
     }
-
 
     /// <summary>
     /// This is used to load the assetbundle
@@ -160,6 +183,8 @@ public class GameManager : MonoBehaviour
             Debug.Log("Failed to load AssetBundle!");
             yield break;
         }
+
+
 
         AssetBundleRequest prefabRequest = myLoadedAssetBundle.LoadAssetAsync<GameObject>("World");
 
