@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7426661691875196420}
   - component: {fileID: 4601238510622913661}
   - component: {fileID: 7574117230010998916}
-  - component: {fileID: 3268189142210747455}
+  - component: {fileID: 2134167747332251303}
   m_Layer: 0
   m_Name: cm
   m_TagString: Untagged
@@ -107,7 +107,7 @@ MonoBehaviour:
   m_AmplitudeGain: 0.6
   m_FrequencyGain: 0.6
   mNoiseOffsets: {x: -765.3436, y: 412.4553, z: 513.0689}
---- !u!114 &3268189142210747455
+--- !u!114 &2134167747332251303
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,18 +119,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3c9beda531928fc40968802117a5d256, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_RecenterTarget: 2
+  m_RecenterTarget: 0
   m_VerticalAxis:
-    Value: 16.59
-    m_SpeedMode: 1
-    m_MaxSpeed: 0.25
-    m_AccelTime: 0.2
-    m_DecelTime: 0.2
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
     m_InputAxisValue: 0
     m_InvertInput: 1
-    m_MinValue: -70
-    m_MaxValue: 70
+    m_MinValue: -18
+    m_MaxValue: 40
     m_Wrap: 0
     m_Recentering:
       m_enabled: 0
@@ -146,10 +146,10 @@ MonoBehaviour:
     m_LegacyVelocityFilterStrength: -1
   m_HorizontalAxis:
     Value: 0
-    m_SpeedMode: 1
-    m_MaxSpeed: 0.7
-    m_AccelTime: 0.2
-    m_DecelTime: 0.2
+    m_SpeedMode: 0
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
     m_InputAxisName: Mouse X
     m_InputAxisValue: 0
     m_InvertInput: 0
@@ -287,5 +287,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerIndex: -1
   AutoEnableInputs: 1
-  XYAxis: {fileID: -7211416461099458271, guid: f1a2a5003e7199a428c2ab1179a336a1, type: 3}
+  XYAxis: {fileID: -8900605093363394772, guid: 7e12dacf2e252844697278212e51f30a, type: 3}
   ZAxis: {fileID: 0}

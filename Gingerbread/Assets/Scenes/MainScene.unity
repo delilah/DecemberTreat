@@ -206,6 +206,73 @@ MonoBehaviour:
   m_DefaultActionMap: Player
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 963194227}
+--- !u!1 &240287799 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5335064366624332552, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
+  m_PrefabInstance: {fileID: 1143157314}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &240287805
+MonoBehaviour:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 240287799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c9beda531928fc40968802117a5d256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RecenterTarget: 0
+  m_VerticalAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
+    m_InputAxisName: Mouse Y
+    m_InputAxisValue: 0
+    m_InvertInput: 1
+    m_MinValue: -10
+    m_MaxValue: 70
+    m_Wrap: 0
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 1
+      m_RecenteringTime: 2
+      m_LegacyHeadingDefinition: -1
+      m_LegacyVelocityFilterStrength: -1
+  m_VerticalRecentering:
+    m_enabled: 0
+    m_WaitTime: 1
+    m_RecenteringTime: 2
+    m_LegacyHeadingDefinition: -1
+    m_LegacyVelocityFilterStrength: -1
+  m_HorizontalAxis:
+    Value: 0
+    m_SpeedMode: 0
+    m_MaxSpeed: 300
+    m_AccelTime: 0.1
+    m_DecelTime: 0.1
+    m_InputAxisName: Mouse X
+    m_InputAxisValue: 0
+    m_InvertInput: 0
+    m_MinValue: -180
+    m_MaxValue: 180
+    m_Wrap: 1
+    m_Recentering:
+      m_enabled: 0
+      m_WaitTime: 1
+      m_RecenteringTime: 2
+      m_LegacyHeadingDefinition: -1
+      m_LegacyVelocityFilterStrength: -1
+  m_HorizontalRecentering:
+    m_enabled: 0
+    m_WaitTime: 1
+    m_RecenteringTime: 2
+    m_LegacyHeadingDefinition: -1
+    m_LegacyVelocityFilterStrength: -1
+  m_ApplyBeforeBody: 0
 --- !u!1 &283179131
 GameObject:
   m_ObjectHideFlags: 0
@@ -509,8 +576,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.14426987, y: 0, z: 0, w: 0.98953843}
-  m_LocalPosition: {x: 0.23018837, y: 1.8866256, z: -3.0449288}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.23018837, y: 1.0023887, z: -3.02}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -642,19 +709,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2323055676961472575, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.8866256
+      value: 1.0023887
       objectReference: {fileID: 0}
     - target: {fileID: 2323055676961472575, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -3.0449288
+      value: -3.02
       objectReference: {fileID: 0}
     - target: {fileID: 2323055676961472575, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.98953843
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2323055676961472575, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.14426987
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2323055676961472575, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
       propertyPath: m_LocalRotation.y
@@ -680,6 +747,10 @@ PrefabInstance:
       propertyPath: XYAxis
       value: 
       objectReference: {fileID: -8900605093363394772, guid: 7e12dacf2e252844697278212e51f30a, type: 3}
+    - target: {fileID: 3268189142210747455, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
+      propertyPath: m_HorizontalAxis.m_MinValue
+      value: -180
+      objectReference: {fileID: 0}
     - target: {fileID: 6472912793638031659, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
       propertyPath: m_Name
       value: CM 3rdPerson
@@ -692,10 +763,14 @@ PrefabInstance:
       propertyPath: m_LookAt
       value: 
       objectReference: {fileID: 339257128}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3268189142210747455, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 5335064366624332552, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 240287805}
   m_SourcePrefab: {fileID: 100100000, guid: ee4bd319f34cf444cbf77bf5326b7d6a, type: 3}
 --- !u!1 &1167585894 stripped
 GameObject:
