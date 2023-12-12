@@ -104,8 +104,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 0}
-  m_AmplitudeGain: 1
-  m_FrequencyGain: 1
+  m_AmplitudeGain: 0.6
+  m_FrequencyGain: 0.6
   mNoiseOffsets: {x: -765.3436, y: 412.4553, z: 513.0689}
 --- !u!114 &3268189142210747455
 MonoBehaviour:
@@ -180,7 +180,7 @@ GameObject:
   - component: {fileID: 2323055676961472575}
   - component: {fileID: 8696447356243710972}
   - component: {fileID: 4433811662852001793}
-  - component: {fileID: 1653848862166770962}
+  - component: {fileID: 2520051509656967905}
   m_Layer: 0
   m_Name: CM 3rdPerson Normal
   m_TagString: Untagged
@@ -273,7 +273,7 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0
   m_OptimalTargetDistance: 0
---- !u!114 &1653848862166770962
+--- !u!114 &2520051509656967905
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -287,5 +287,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PlayerIndex: -1
   AutoEnableInputs: 1
-  XYAxis: {fileID: 0}
+  XYAxis: {fileID: -7211416461099458271, guid: f1a2a5003e7199a428c2ab1179a336a1, type: 3}
   ZAxis: {fileID: 0}

@@ -1,0 +1,7 @@
+ManifestFileVersion: 0
+CRC: 3807406988
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: worldassetbundle
+      Dependencies: {}

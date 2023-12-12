@@ -1,0 +1,40 @@
+ManifestFileVersion: 0
+CRC: 1216521701
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0e2936cdfb70fa0bc22106ee7d86810d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: ad697d3f28307358e43e58d5e09f2343
+  IncrementalBuildHash:
+    serializedVersion: 2
+    Hash: 0e2936cdfb70fa0bc22106ee7d86810d
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 135
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Prefabs/World.prefab
+Dependencies: []
