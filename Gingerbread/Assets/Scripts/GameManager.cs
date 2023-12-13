@@ -3,11 +3,13 @@ using UnityEngine.InputSystem;
 using System.IO;
 using System.Collections;
 using System.Collections.Generic;
+using CardboardCore.DI;
+using CardboardCore.DI.Interfaces;
+using System;
 
-public class GameManager : MonoBehaviour
+[Injectable(ClearAutomatically = true)]
+public class GameManager : MonoBehaviour, DIInitializable, DIDisposable
 {
-    public static GameManager instance;
-
     public enum GameState { MainMenu, Game };
 
     public GameState gameState;
@@ -28,34 +30,25 @@ public class GameManager : MonoBehaviour
     private GameObject _worldInstance;
     private AssetBundle myLoadedAssetBundle;
     private Coroutine _loadAssetBundleCoroutine;
-
     public List<GameObject> gameObjectsToRotate;
+    public static event Action<GameState> OnStateChanged;
+    public string InjectedGM => "Hello! I'm the GameManager injected into PlayerController";
+    public string ReleasedGM => "Hello! I'm the GameManager being Released";
 
 
-    private void Awake()
+    public void Initialize()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Debug.LogError("Multiple instances of GameManager detected. Oh no, this should not happen!");
-            Destroy(this.gameObject);
-        }
+
     }
 
-    public void Start()
+    void Start()
     {
         _playerInput = GetComponent<PlayerInput>();
         _backToMenuAction = _playerInput.actions["BackToMenu"];
         _exitGameAction = _playerInput.actions["ExitGame"];
         _playGameAction = _playerInput.actions["PlayGame"];
 
-
-        //ChangeState(gameState);
         ChangeState(GameState.MainMenu);
-        //StartGame();
     }
 
     public void Update()
@@ -126,6 +119,7 @@ public class GameManager : MonoBehaviour
     public void ChangeState(GameState state)
     {
         gameState = state;
+        OnStateChanged?.Invoke(state);
 
         if (state == GameState.MainMenu)
         {
@@ -159,7 +153,6 @@ public class GameManager : MonoBehaviour
 
             _mainMenuPanel.SetActive(false);
             _pedestalCharacter.SetActive(false);
-
             _backToMenuButton.SetActive(true);
         }
     }
@@ -172,6 +165,7 @@ public class GameManager : MonoBehaviour
     private IEnumerator LoadAssetBundleCoroutine()
     {
         string bundlePath = Path.Combine(Application.streamingAssetsPath, "worldassetbundle");
+
         AssetBundleCreateRequest request = AssetBundle.LoadFromFileAsync(bundlePath);
 
         yield return request;
@@ -183,8 +177,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("Failed to load AssetBundle!");
             yield break;
         }
-
-
 
         AssetBundleRequest prefabRequest = myLoadedAssetBundle.LoadAssetAsync<GameObject>("World");
 
@@ -199,5 +191,12 @@ public class GameManager : MonoBehaviour
         }
 
         _worldInstance = Instantiate(_worldPrefab);
+        _worldInstance.SetActive(true);
     }
+
+    public void Dispose()
+    {
+        // empty  
+    }
+
 }

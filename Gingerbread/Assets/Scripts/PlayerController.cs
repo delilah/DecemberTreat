@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using CardboardCore.DI;
+using CardboardCore.Utilities;
 
 // required components
 [RequireComponent(typeof(CharacterController))]
@@ -7,7 +9,7 @@ using UnityEngine.InputSystem;
 [RequireComponent(typeof(Animator))]
 
 
-public class PlayerController : MonoBehaviour
+public class PlayerController : CardboardCoreBehaviour
 {
     [SerializeField] private float _playerSpeed = 2.0f;
     [SerializeField] private float _jumpHeight = 1.0f;
@@ -36,10 +38,25 @@ public class PlayerController : MonoBehaviour
 
     private bool _groundedPlayer;
 
+    private bool _isGameState;
 
 
-    private void Start()
+    protected override InjectTiming MyInjectTiming => InjectTiming.OnEnable;
+    [Inject] private GameManager _gameManager;
+
+    protected override void OnInjected()
     {
+        Log.Write(_gameManager.InjectedGM);
+    }
+
+    protected override void OnReleased()
+    {
+        Log.Write(_gameManager.ReleasedGM);
+    }
+
+    protected override void Start()
+    {
+        base.Start();
         _controller = GetComponent<CharacterController>();
         _playerInput = GetComponent<PlayerInput>();
         _animator = GetComponent<Animator>();
@@ -59,9 +76,28 @@ public class PlayerController : MonoBehaviour
         _jumpAction = _playerInput.actions["Jump"];
     }
 
+
+    protected override void OnEnable()
+    {
+        base.OnEnable();
+        GameManager.OnStateChanged += HandleStateChanged;
+    }
+
+    protected override void OnDisable()
+    {
+        base.OnDisable();
+        GameManager.OnStateChanged -= HandleStateChanged;
+    }
+
+    private void HandleStateChanged(GameManager.GameState state)
+    {
+        _isGameState = (state == GameManager.GameState.Game);
+    }
+
     void Update()
     {
-        if (GameManager.instance.gameState == GameManager.GameState.MainMenu) return;
+        if (!_isGameState) return;
+
 
         _groundedPlayer = _controller.isGrounded;
 
